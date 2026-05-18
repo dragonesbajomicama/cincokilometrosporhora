@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="https://use.typekit.net/hyo1win.css">
   <link rel="stylesheet" href="../5kmh_interactiva_mismo_lenguaje/style.css" />
-  <link rel="stylesheet" href="css/grannystyle.css?v=20260515-1" />
+  <link rel="stylesheet" href="css/grannystyle.css?v=20260517-26" />
 </head>
 <body>
   <div class="site-shell">
@@ -24,7 +24,7 @@
           <ul class="nav-list">
             <li><a href="#inicio" class="activo" data-seccion="inicio">Inicio</a></li>
             <li><a href="#simulador" data-seccion="simulador">Interfaz</a></li>
-            <li><a href="#documentacion" data-seccion="documentacion">Documentación</a></li>
+            <li><a href="#documentacion" data-seccion="documentacion">Proceso</a></li>
             <li><a href="#archivo" data-seccion="archivo">Archivo</a></li>
           </ul>
         </nav>
@@ -163,7 +163,7 @@
         <div class="documentation-layout">
           <div class="documentation-shell">
             <article class="doc-opener" id="doc-inicio">
-              <p class="section-tag">Documentación</p>
+              <p class="section-tag">Proceso</p>
               <h3>Proceso y sistema</h3>
               <p class="doc-lead">
                 Cómo una caminata se convierte en un lenguaje para leer la ciudad: el cuerpo observa,
@@ -184,7 +184,7 @@
               <p class="section-tag">Método</p>
               <h3>Observar desde la velocidad del cuerpo</h3>
               <div class="method-split">
-                <article>
+                <article data-method-label="Cómo">
                   <h4>Protocolo</h4>
                   <p>
                     Cada ruta se camina a escala peatonal, atendiendo los momentos en que la ciudad modifica el paso.
@@ -193,7 +193,7 @@
                   </p>
                 </article>
 
-                <article>
+                <article data-method-label="Qué">
                   <h4>Qué se registra</h4>
                   <p>
                     El registro condensa cada evento en una unidad comparable: dónde ocurre, qué le pasa al cuerpo,
@@ -215,10 +215,10 @@
                 <article>
                   <p class="doc-label">Eventos</p>
                   <ul class="legend-list event-legend">
-                    <li><span class="event-shape event-shape--x" aria-hidden="true"></span><strong>Esperar</strong><em>el cuerpo queda suspendido hasta que aparece una apertura.</em></li>
-                    <li><span class="event-shape event-shape--dot" aria-hidden="true"></span><strong>Frenar</strong><em>el avance baja intensidad por presión, borde u obstáculo.</em></li>
-                    <li><span class="event-shape event-shape--square" aria-hidden="true"></span><strong>Acelerar</strong><em>el paso se intensifica para sincronizarse o escapar de un flujo.</em></li>
-                    <li><span class="event-shape event-shape--triangle" aria-hidden="true"></span><strong>Desviarse</strong><em>la trayectoria cambia para sostener continuidad.</em></li>
+                    <li><span class="event-shape event-shape--x" aria-hidden="true"></span><strong>Esperar</strong><em>el cuerpo queda detenido por una condición externa y debe leer cuándo volver a avanzar.</em></li>
+                    <li><span class="event-shape event-shape--dot" aria-hidden="true"></span><strong>Frenar</strong><em>el paso pierde intensidad para negociar un borde, una cercanía o una posible fricción.</em></li>
+                    <li><span class="event-shape event-shape--square" aria-hidden="true"></span><strong>Acelerar</strong><em>la velocidad aumenta para cruzar, sincronizarse o salir de una presión del entorno.</em></li>
+                    <li><span class="event-shape event-shape--triangle" aria-hidden="true"></span><strong>Desviarse</strong><em>la ruta cambia para rodear una interrupción sin abandonar el recorrido.</em></li>
                   </ul>
                 </article>
 
@@ -247,31 +247,31 @@
               <div class="translation-path">
                 <article class="translation-step">
                   <span>01</span>
-                  <h4>Observación situada</h4>
+                  <h4>Experiencia a datos</h4>
                   <p>La caminata identifica fricciones reales: esperas, frenos, aceleraciones y desvíos que aparecen en contexto.</p>
                 </article>
 
                 <article class="translation-step">
                   <span>02</span>
-                  <h4>Matriz analítica</h4>
+                  <h4>Datos a eventos</h4>
                   <p>El registro organiza ruta, evento, agente e intensidad para comparar caminatas sin borrar su especificidad.</p>
                 </article>
 
                 <article class="translation-step translation-step--textile">
                   <span>03</span>
-                  <h4>Traducción textil</h4>
+                  <h4>Eventos a puntadas</h4>
                   <p>La secuencia se vuelve puntada, acumulación y tensión material: el ritmo del recorrido aparece como superficie.</p>
                 </article>
 
                 <article class="translation-step translation-step--sound">
                   <span>04</span>
-                  <h4>Traducción sonora</h4>
+                  <h4>Puntadas a partitura</h4>
                   <p>Los cambios de paso se convierten en pulso, pausa, corte y densidad, devolviendo la ciudad al cuerpo desde la escucha.</p>
                 </article>
 
                 <article class="translation-step translation-step--digital">
                   <span>05</span>
-                  <h4>Interfaz digital</h4>
+                  <h4>Partitura a sonido</h4>
                   <p>El sistema se activa como simulador para filtrar agentes, cambiar rutas y observar patrones de negociación urbana.</p>
                 </article>
               </div>
@@ -332,7 +332,7 @@
             </p>
             <div class="archive-question">
               <p>Pregunta curatorial</p>
-              <strong>¿Qué apareció durante la caminata que revela algo sobre moverse a pie?</strong>
+              <strong>¿Qué apareció en la caminata que revela algo sobre moverse en pasos?</strong>
             </div>
           </article>
 
@@ -418,12 +418,6 @@
               </div>
             </article>
 
-            <article class="archive-tile archive-note">
-              <p class="section-tag">Clima</p>
-              <h3>hubo días de lluvia</h3>
-              <p>El clima cambiaba la lectura del suelo, la velocidad y el cansancio.</p>
-            </article>
-
             <article class="archive-tile archive-photo">
               <img src="img/delvalle/pisodeciegosroto.png" alt="Piso táctil roto en Del Valle">
               <div class="archive-insight">
@@ -466,6 +460,12 @@
               </div>
             </article>
 
+            <article class="archive-tile archive-note archive-note--dark">
+              <p class="section-tag">Decisión situada</p>
+              <h3>la decisión propia dependía del territorio</h3>
+              <p>Nuestras elecciones no surgían en vacío, sino en respuesta a condiciones específicas del entorno.</p>
+            </article>
+
             <article class="archive-tile archive-photo">
               <img src="img/delvalle/senaleticayparadadecamionconfusa.png" alt="Señalética y parada de camión confusa">
               <div class="archive-insight">
@@ -475,12 +475,6 @@
               </div>
             </article>
 
-            <article class="archive-tile archive-note">
-              <p class="section-tag">Aprendizaje situado</p>
-              <h3>poco a poco fuimos reconociendo las zonas</h3>
-              <p>La repetición convirtió el recorrido en memoria corporal.</p>
-            </article>
-
             <article class="archive-tile archive-photo">
               <img src="img/centrohistorico/mototaxi.png" alt="Mototaxi en el Centro Histórico">
               <div class="archive-insight">
@@ -488,6 +482,12 @@
                 <h3>Velocidades mezcladas</h3>
                 <p>El cuerpo negocia constantemente con el entorno cuando distintas velocidades comparten espacio.</p>
               </div>
+            </article>
+
+            <article class="archive-tile archive-note">
+              <p class="section-tag">Aprendizaje situado</p>
+              <h3>poco a poco fuimos reconociendo las zonas</h3>
+              <p>La repetición convirtió el recorrido en memoria corporal.</p>
             </article>
 
             <article class="archive-tile archive-photo">
@@ -643,6 +643,12 @@
               </div>
             </article>
 
+            <article class="archive-tile archive-note archive-note--dark">
+              <p class="section-tag">Cuerpo y ciudad</p>
+              <h3>caminar no es únicamente una forma de desplazarse</h3>
+              <p>También es observar, interpretar y relacionarse con la ciudad.</p>
+            </article>
+
             <article class="archive-tile archive-photo">
               <img src="img/delvalle/esperancruce.png" alt="Personas esperando en un cruce de Del Valle">
               <div class="archive-insight">
@@ -688,10 +694,10 @@
               </div>
             </article>
 
-            <article class="archive-tile archive-note archive-note--dark">
-              <p class="section-tag">Cuerpo y ciudad</p>
-              <h3>caminar no es únicamente una forma de desplazarse</h3>
-              <p>También es observar, interpretar y relacionarse con la ciudad.</p>
+            <article class="archive-tile archive-note">
+              <p class="section-tag">Tejido</p>
+              <h3>punto a punto</h3>
+              <p>El tejido materializó patrones del movimiento sin volverlos completamente cerrados.</p>
             </article>
 
             <article class="archive-tile archive-photo">
@@ -710,6 +716,12 @@
                 <h3>Bicitaxi</h3>
                 <p>Entre caminar y circular, aparecen vehículos intermedios que reorganizan la lectura del espacio.</p>
               </div>
+            </article>
+
+            <article class="archive-tile archive-note">
+              <p class="section-tag">Clima</p>
+              <h3>hubo días de lluvia</h3>
+              <p>El clima cambiaba la lectura del suelo, la velocidad y el cansancio.</p>
             </article>
 
             <article class="archive-tile archive-photo">
@@ -737,12 +749,6 @@
                 <h3>Cruce humano</h3>
                 <p>Cruzar implica sincronizar decisión individual con el ritmo de otros cuerpos.</p>
               </div>
-            </article>
-
-            <article class="archive-tile archive-note">
-              <p class="section-tag">Tejido</p>
-              <h3>punto a punto</h3>
-              <p>El tejido materializó patrones del movimiento sin volverlos completamente cerrados.</p>
             </article>
 
             <article class="archive-tile archive-photo">
