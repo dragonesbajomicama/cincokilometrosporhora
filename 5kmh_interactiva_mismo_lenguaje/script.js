@@ -80,11 +80,6 @@ const agentExplanations = {
   }
 };
 
-const generalExplanation = {
-  title: 'Lectura general',
-  body: 'Ciudad, cuerpos, objetos y decisiones aparecen juntos; el filtro pregunta quién toma el mando.'
-};
-
 const routeReadings = {
   'Coyoacán': 'Coyoacán no tiene un mando único: avanzar exige alternar obediencia al cruce, cálculo frente al coche y corrección ante otros cuerpos. La caminata importa porque convierte una zona barrial en sistema de negociación constante.',
   'Colonia del Valle': 'Colonia del Valle regula sin dramatismo. El desajuste está en que casi nada obliga a decidir: el cuerpo avanza porque acepta pausas pequeñas y frenos previsibles, no porque conquiste el espacio.',
@@ -236,13 +231,18 @@ function buildPairClosure(agents, profiles) {
 function renderAgentExplanation() {
   if (!agentExplanation) return;
   const agents = getSelectedAgents();
-  const info = agents.length === 1 ? agentExplanations[agents[0]] : generalExplanation;
 
-  if (agents.length > 1) {
-    agentExplanation.innerHTML = `<strong>Cruce activo</strong><p>La lectura cambia de suma a tensión: el cuerpo debe jerarquizar fuerzas para poder avanzar.</p>`;
+  if (agents.length !== 1) {
+    agentExplanation.hidden = true;
+    agentExplanation.innerHTML = '';
+    delete agentExplanation.dataset.agent;
     return;
   }
 
+  agentExplanation.hidden = false;
+  const agent = agents[0];
+  const info = agentExplanations[agent];
+  agentExplanation.dataset.agent = agent;
   agentExplanation.innerHTML = `<strong>${info.title}</strong><p>${info.body}</p>`;
 }
 
@@ -287,19 +287,15 @@ function renderWalkDiagnosis() {
   const dominantAgent = getDominantAgent(selectedWalk);
   const dominantAction = getDominantAction(selectedWalk);
   walkDiagnosis.innerHTML = `
-    <div class="diagnosis-meta">
-      <span>${selectedWalk.time}</span>
-      <span>${selectedWalk.zoneType}</span>
-      <span>${selectedWalk.scale}</span>
-    </div>
     <strong>${selectedWalk.cityType}</strong>
     <p>${selectedWalk.criticalRead}</p>
-    <dl>
-      <div><dt>Condición</dt><dd>${selectedWalk.condition}</dd></div>
-      <div><dt>Experiencia</dt><dd>${selectedWalk.experience}</dd></div>
-      <div><dt>Agente dominante</dt><dd>${agentNames[dominantAgent.agent]}</dd></div>
-      <div><dt>Acción dominante</dt><dd>${actionNames[dominantAction.action]}</dd></div>
-    </dl>
+    <div class="diagnosis-facts" aria-label="Datos clave de la caminata">
+      <span><b>Hora</b>${selectedWalk.time}</span>
+      <span><b>Escala</b>${selectedWalk.scale}</span>
+      <span><b>Condición</b>${selectedWalk.condition}</span>
+      <span><b>Experiencia</b>${selectedWalk.experience}</span>
+      <span><b>Dominante</b>${agentNames[dominantAgent.agent]} / ${actionNames[dominantAction.action]}</span>
+    </div>
   `;
 }
 
@@ -628,7 +624,7 @@ function renderWalkButtons() {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'walk-button';
-    button.textContent = `${index + 1}. ${walk.place}`;
+    button.textContent = walk.place;
     button.classList.toggle('is-selected', walk.id === selectedWalk.id);
     button.addEventListener('click', () => {
       selectedWalk = walk;
@@ -724,8 +720,8 @@ function renderCopy() {
   document.documentElement.style.setProperty('--route-accent', routeAccents[selectedWalk.place] || '#dc681a');
   if (walkRouteMeta) walkRouteMeta.textContent = selectedWalk.title.split('·')[0].trim();
 
-  activeAgent.textContent = getAgentLabelList(agents);
-  wordState.textContent = getAgentLabelList(agents);
+  if (activeAgent) activeAgent.textContent = getAgentLabelList(agents);
+  if (wordState) wordState.textContent = getAgentLabelList(agents);
 
   const visibleTotal = agents.length
     ? agents.reduce((sum, agent) => sum + getAgentTotal(selectedWalk, agent), 0)
@@ -760,16 +756,22 @@ function renderCopy() {
 
   walkStats.innerHTML = `
     <div class="stat-row">
-      <strong>${agents.length ? 'Comparación visible' : 'Total visible'}</strong>
+      <strong>${agents.length ? 'Registros filtrados' : 'Registros'}</strong>
       <span>${visibleTotal}</span>
     </div>
-    ${relationRows}
+    <details class="stat-details">
+      <summary>Ver desglose</summary>
+      <div class="stat-details-body">
+        ${relationRows}
+      </div>
+    </details>
   `;
 
   renderAgentExplanation();
   renderSpiralInsight();
   renderWalkDiagnosis();
   renderComparisonGrid();
+  bindStatsPopover();
 }
 function render() {
   buildWord();
@@ -782,3 +784,31 @@ function render() {
 buildHeroWord();
 buildHeroModuleField();
 if (pixelWord) render();
+
+function bindStatsPopover() {
+  if (!walkStats) return;
+  const details = walkStats.querySelector('.stat-details');
+  if (!details) return;
+
+  const closeDetails = (event) => {
+    if (!details.open) {
+      document.removeEventListener('pointerdown', closeDetails);
+      return;
+    }
+    if (details.contains(event.target)) return;
+    details.open = false;
+    document.removeEventListener('pointerdown', closeDetails);
+  };
+
+  details.addEventListener('toggle', () => {
+    if (details.open) {
+      requestAnimationFrame(() => document.addEventListener('pointerdown', closeDetails));
+    } else {
+      document.removeEventListener('pointerdown', closeDetails);
+    }
+  });
+
+  details.addEventListener('mouseleave', () => {
+    if (details.open) details.open = false;
+  });
+}

@@ -76,73 +76,69 @@
       <section id="simulador">
         <section class="stack">
           <section class="analysis-layout" aria-label="Lectura interactiva de caminata">
-            <div class="diagram-column">
-              <article class="card diagram-card word-block" aria-label="Matriz modular 5 km/h">
-                <div class="card-head">
-                  <div>
-                    <p class="section-tag">Matriz de datos</p>
-                    <h3>5 km/h como registro</h3>
-                  </div>
-                  <p id="wordState" class="status-pill">Todos los agentes</p>
-                </div>
-                <div class="word-scroll">
-                  <svg id="pixelWord" class="pixel-word" viewBox="0 0 4054.03 956.52" role="img" aria-label="5 km/h construido con módulos de datos"></svg>
-                </div>
-
-                <p class="diagram-note">¿Quién modifica el paso?</p>
-                <p>Los eventos van de pausa a desvío.</p>
-              </article>
-
-              <article class="diagram-card walks-block">
-                <div class="spiral-card">
-                  <div class="woven-route-title">
-                    <p class="section-tag route-meta"><span>Ruta</span><span id="walkRouteMeta">Caminata 1</span></p>
-                    <h2 id="routeHeroTitle">Coyoacán</h2>
-                  </div>
-                  <svg id="spiralScore" viewBox="0 0 620 620" role="img" aria-label="Partitura en espiral de la caminata"></svg>
-
-                  <div class="diagram-legend action-legend" aria-label="Leyenda de acciones">
-                    <p class="section-tag">Acciones</p>
-                    <span><i class="glyph glyph-x"></i> Esperar</span>
-                    <span><i class="glyph glyph-dot"></i> Frenar</span>
-                    <span><i class="glyph glyph-square"></i> Acelerar</span>
-                    <span><i class="glyph glyph-triangle"></i> Desviarse</span>
-                  </div>
-
-                  <div id="spiralInsight" class="spiral-insight">
-                    <p class="section-tag">Lectura compartida</p>
-                    <p>La espiral muestra dónde el paso se detiene, acelera o cambia de ruta.</p>
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <aside class="side-panel" aria-label="Filtros y datos">
-              <section class="card side-section routes-panel">
+            <aside class="card side-panel" aria-label="Filtros">
+              <section class="side-section routes-panel">
                 <p class="section-tag">Caminata</p>
                 <div id="walkButtons" class="walk-buttons" aria-label="Seleccionar caminata"></div>
               </section>
 
-              <section class="card side-section legend" aria-label="Filtros de agentes">
-                <p class="section-tag">Agente que modifica el paso</p>
-                <button class="legend-clear" id="clearAgent" type="button">Todos los agentes</button>
+              <section class="side-section legend" aria-label="Filtros de agentes">
+                <p class="section-tag">Agente</p>
+                <button class="legend-clear" id="clearAgent" type="button">Sin filtro</button>
                 <button class="legend-item" type="button" data-agent="infraestructura"><span></span>Infraestructura</button>
                 <button class="legend-item" type="button" data-agent="vehiculos"><span></span>Vehículos</button>
                 <button class="legend-item" type="button" data-agent="humano"><span></span>Humano</button>
                 <button class="legend-item" type="button" data-agent="noHumano"><span></span>No humano</button>
                 <button class="legend-item" type="button" data-agent="decision"><span></span>Decisión propia</button>
               </section>
-
-              <section class="card side-section walk-copy">
-                <p id="activeAgent" class="section-tag">Todos los agentes</p>
-                <div id="walkDiagnosis" class="diagnosis-card"></div>
-                <div id="agentExplanation" class="reading-card">
-                  <strong>Lectura general</strong>
-                  <p>Ciudad, cuerpos, objetos y decisiones aparecen juntos; el filtro pregunta quién toma el mando.</p>
-                </div>
-                <div id="walkStats" class="stats-grid"></div>
-              </section>
             </aside>
+
+            <div class="diagram-column">
+              <article class="composition-card" aria-label="Composición de caminata">
+                <header class="route-heading">
+                  <div>
+                    <p class="section-tag route-meta"><span>Ruta</span><span id="walkRouteMeta">Caminata 1</span></p>
+                    <h2 id="routeHeroTitle">Coyoacán</h2>
+                  </div>
+                </header>
+
+                <div class="composition-grid">
+                  <section class="spiral-card walks-block" aria-label="Partitura en espiral">
+                    <div class="diagram-legend action-legend" aria-label="Leyenda de acciones">
+                      <p class="section-tag">Acciones</p>
+                      <span><i class="glyph glyph-x"></i> Esperar</span>
+                      <span><i class="glyph glyph-dot"></i> Frenar</span>
+                      <span><i class="glyph glyph-square"></i> Acelerar</span>
+                      <span><i class="glyph glyph-triangle"></i> Desviarse</span>
+                    </div>
+                    <div id="agentExplanation" class="reading-card" hidden></div>
+                    <svg id="spiralScore" viewBox="0 0 620 620" role="img" aria-label="Partitura en espiral de la caminata"></svg>
+
+                    <section class="word-block" aria-label="Huella modular 5 km/h">
+                      <div class="card-head">
+                        <div>
+                          <p class="section-tag">Huella modular</p>
+                          <p class="word-caption">De menor a mayor intensidad del paso</p>
+                        </div>
+                      </div>
+                      <div class="word-scroll">
+                        <svg id="pixelWord" class="pixel-word" viewBox="0 0 4054.03 956.52" role="img" aria-label="5 km/h construido con módulos de datos"></svg>
+                      </div>
+                    </section>
+                  </section>
+
+                  <section class="reading-column" aria-label="Lectura y leyendas">
+                    <div id="spiralInsight" class="spiral-insight">
+                      <p class="section-tag">Lectura compartida</p>
+                      <p>La espiral muestra dónde el paso se detiene, acelera o cambia de ruta.</p>
+                    </div>
+
+                    <div id="walkDiagnosis" class="diagnosis-card"></div>
+                    <div id="walkStats" class="stats-grid"></div>
+                  </section>
+                </div>
+              </article>
+            </div>
           </section>
 
           <section class="comparative-section" aria-label="Síntesis crítica de caminatas">
