@@ -269,6 +269,7 @@ p:last-child{
   background: transparent;
   color: var(--col-fondo);
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .nav-principal a::after{
@@ -678,13 +679,13 @@ main > section.activo{
   height: 1.05rem;
   margin-top: 0.08rem;
   border-radius: 50%;
-  background: var(--col-acento);
+  background: var(--agent-color, var(--infraestructura));
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .agent-legend li:hover span{
   transform: scale(1.22);
-  box-shadow: 0 0 0 0.28rem rgba(213, 106, 31, 0.14);
+  box-shadow: 0 0 0 0.28rem var(--agent-glow, rgba(220, 104, 26, 0.16));
 }
 
 .event-shape{
@@ -720,26 +721,6 @@ main > section.activo{
 .event-legend li:nth-child(4) .event-shape{
   animation-name: docSignalTurn;
   animation-delay: 4.2s;
-}
-
-.event-legend li:hover .event-shape{
-  color: var(--col-acento);
-}
-
-.event-legend li:hover .event-shape--x{
-  animation: docSignalShake 440ms ease;
-}
-
-.event-legend li:hover .event-shape--dot{
-  animation: docSignalPulse 540ms ease;
-}
-
-.event-legend li:hover .event-shape--square{
-  animation: docSignalStep 520ms ease;
-}
-
-.event-legend li:hover .event-shape--triangle{
-  animation: docSignalTurn 520ms ease;
 }
 
 .event-shape--x::before,
@@ -798,20 +779,29 @@ main > section.activo{
   line-height: 1.45;
 }
 
-.agent-legend li:nth-child(2) span{
-  background: var(--col-petrol);
+.agent-legend li:nth-child(1){
+  --agent-color: var(--infraestructura);
+  --agent-glow: rgba(220, 104, 26, 0.16);
 }
 
-.agent-legend li:nth-child(3) span{
-  background: var(--col-lima);
+.agent-legend li:nth-child(2){
+  --agent-color: var(--vehiculos);
+  --agent-glow: rgba(28, 83, 141, 0.16);
 }
 
-.agent-legend li:nth-child(4) span{
-  background: var(--col-tinta);
+.agent-legend li:nth-child(3){
+  --agent-color: var(--humano);
+  --agent-glow: rgba(99, 148, 158, 0.18);
 }
 
-.agent-legend li:nth-child(5) span{
-  background: var(--col-acento);
+.agent-legend li:nth-child(4){
+  --agent-color: var(--noHumano);
+  --agent-glow: rgba(155, 164, 76, 0.18);
+}
+
+.agent-legend li:nth-child(5){
+  --agent-color: var(--decision);
+  --agent-glow: rgba(44, 169, 32, 0.18);
 }
 
 .translation-path{
@@ -874,7 +864,7 @@ main > section.activo{
 }
 
 .translation-step:hover p{
-  max-height: 9rem;
+  max-height: 18rem;
   opacity: 1;
   transform: translateY(0);
 }
@@ -934,7 +924,7 @@ main > section.activo{
 }
 
 .process-timeline article:hover p{
-  max-height: 8rem;
+  max-height: 18rem;
   opacity: 1;
   transform: translateY(0);
 }
@@ -1148,8 +1138,7 @@ main > section.activo{
   #spiralScore,
   .doc-flow span,
   .doc-flow span:not(:last-child)::after,
-  .event-legend li .event-shape,
-  .event-legend li:hover .event-shape{
+  .event-legend li .event-shape{
     animation: none;
   }
 
@@ -1243,8 +1232,8 @@ main > section.activo{
 
 .archive-atlas{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(0.85rem, 1.4vw, 1.2rem);
   align-items: start;
 }
 
@@ -1366,6 +1355,21 @@ main > section.activo{
 
 .archive-note--tilt{
   transform: rotate(-0.35deg);
+}
+
+@media (min-width: 54rem){
+  .archive-atlas{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .archive-note{
+    min-height: clamp(10.5rem, 15vw, 13rem);
+  }
+}
+
+@media (min-width: 92rem){
+  .archive-atlas{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .simulator-panel{
@@ -1516,7 +1520,7 @@ li{
   }
 
   .archive-atlas{
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
   }
 }
@@ -1594,13 +1598,13 @@ li{
 
 @media (min-width: 90rem){
   .archive-atlas{
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 110rem){
   .archive-atlas{
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
