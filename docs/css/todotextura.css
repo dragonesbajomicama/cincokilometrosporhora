@@ -7,7 +7,7 @@
   --col-turquesa: #abc471;
 
   --ff-base: "mozaic-geo-variable", sans-serif;
-  --ff-display: "gridlite-pe-variable", sans-serif;
+  --ff-display: "5KM", sans-serif;
 
   --maxw: 1120px;
 
@@ -24,6 +24,22 @@
   --bdr-strong: 2px solid rgba(36, 137, 200, 0.35);
 }
 
+@font-face{
+  font-family: "5KM";
+  src: url("../../fonts/5KMVF.ttf") format("truetype");
+  font-weight: 400 699;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "5KM";
+  src: url("../../fonts/5KMboldVF.ttf") format("truetype");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===== BASE ===== */
 *{ box-sizing: border-box; }
 
@@ -38,8 +54,8 @@ body{
   position: relative;
 }
 body::before{
-  content: "";
-  position: absolute;
+    --ff-base: "mozaic-geo-variable", sans-serif;
+    --ff-display: "5KM", sans-serif;
   inset: 0;
 
   background-color: #00071f;
@@ -56,14 +72,45 @@ body::before{
   pointer-events: none;
   z-index: -1;
 }
+  @font-face{
+    font-family: "5KM";
+    src: url("../../fonts/5KMVF.ttf") format("truetype");
+    font-weight: 400 699;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face{
+    font-family: "5KM";
+    src: url("../../fonts/5KMboldVF.ttf") format("truetype");
+    font-weight: 700 900;
+    font-style: normal;
+    font-display: swap;
+  }
 
 /* ===== LAYOUT ===== */
-.container{
+  --ff-display: "5KM", sans-serif;
   max-width: var(--maxw);
   margin: 0 auto;
   padding: var(--sp-4) var(--sp-3) var(--sp-5) var(--sp-3);
 }
 
+
+@font-face{
+  font-family: "5KM";
+  src: url("../../fonts/5KMVF.ttf") format("truetype");
+  font-weight: 400 699;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "5KM";
+  src: url("../../fonts/5KMboldVF.ttf") format("truetype");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
 .stack > * + *{ margin-top: var(--sp-3); }
 
 .grid-2{

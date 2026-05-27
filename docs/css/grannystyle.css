@@ -20,8 +20,8 @@
   --surface-negative: rgba(15, 76, 91, 0.9);
 
   --ff-base: "mozaic-geo-variable", sans-serif;
-  --ff-display: "gridlite-pe-variable", sans-serif;
-  --section-title-size: clamp(2.85rem, 5.8vw, 4.75rem);
+  --ff-display: "5KMRegular", sans-serif;
+  --section-title-size: clamp(2.35rem, 4.7vw, 3.82rem);
 
   --maxw: clamp(84rem, 92vw, 118rem);
   --content-pad: clamp(1rem, 2.4vw, 3.25rem);
@@ -35,6 +35,14 @@
   --radius: 0.35rem;
   --bdr: 0.1rem solid var(--col-borde);
   --shadow: 0 1rem 2.4rem rgba(20, 57, 95, 0.07);
+}
+
+@font-face{
+  font-family: "5KMRegular";
+  src: url("../../fonts/5KMVF.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 *{
@@ -68,6 +76,18 @@ a:hover{
 img{
   display: block;
   max-width: 100%;
+}
+
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .site-shell{
@@ -145,6 +165,13 @@ img{
   padding-left: 1rem;
 }
 
+.site-logo{
+  display: block;
+  width: min(34vw, 14.5rem);
+  min-width: 7.25rem;
+  color: var(--col-fondo);
+}
+
 .hero-copy::before{
   content: "";
   position: absolute;
@@ -155,6 +182,43 @@ img{
   background: var(--col-acento);
   transform-origin: top center;
   animation: accentThreadBreath 5.5s ease-in-out infinite;
+}
+
+.hero-pixel-word{
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hero-logo-tile{
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-logo-build 950ms cubic-bezier(.2, .75, .15, 1) var(--build-delay, 0ms) forwards;
+}
+
+.hero-logo-tile.is-alive{
+  animation: hero-logo-breathe 1600ms ease-in-out 1;
+}
+
+.hero-logo-tile.is-built{
+  opacity: 1;
+  transform: scale(1);
+  animation: none;
+}
+
+.hero-logo-tile.is-built.is-alive{
+  animation: hero-logo-breathe 1600ms ease-in-out 1;
+}
+
+.site-logo .hero-logo-tile,
+.site-logo .hero-logo-tile.is-alive,
+.site-logo .hero-logo-tile.is-built,
+.site-logo .hero-logo-tile.is-built.is-alive{
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 .eyebrow,
@@ -176,8 +240,9 @@ img{
 h2{
   margin: 0;
   font-family: var(--ff-display);
-  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
-  line-height: 0.95;
+  font-weight: 750;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 750;
+  line-height: 1.04;
 }
 
 .hero-copy h1{
@@ -196,9 +261,15 @@ h2{
 }
 
 h2{
-  font-size: clamp(2.35rem, 4.6vw, 3.8rem);
+  font-size: clamp(1.98rem, 3.75vw, 3.08rem);
   color: var(--col-acento);
   max-width: 13ch;
+}
+
+#routeHeroTitle{
+  margin-top: 0.85rem;
+  font-weight: 100;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 100;
 }
 
 h3{
@@ -494,8 +565,9 @@ main > section.activo{
   color: var(--col-acento);
   font-family: var(--ff-display);
   font-size: var(--section-title-size);
-  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
-  line-height: 0.95;
+  font-weight: 750;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 750;
+  line-height: 1.04;
 }
 
 .doc-lead{
@@ -1005,6 +1077,42 @@ main > section.activo{
   }
 }
 
+@keyframes hero-logo-build{
+  0%{
+    opacity: 0;
+    transform: translateY(0.65rem) scale(0.2) rotate(8deg);
+  }
+
+  70%{
+    opacity: 1;
+    transform: translateY(-0.08rem) scale(1.06);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes hero-logo-breathe{
+  0%,
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  12%,
+  88%{
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50%{
+    opacity: 0.78;
+    transform: scale(var(--alive-scale, 1.14));
+  }
+}
+
 @keyframes frameBreath{
   0%,
   100%{
@@ -1134,6 +1242,7 @@ main > section.activo{
   .site-header::after,
   .hero-copy::before,
   .hero-panel::before,
+  .hero-logo-tile,
   #pixelWord,
   #spiralScore,
   .doc-flow span,
@@ -1614,9 +1723,29 @@ li{
 
 #simulador .side-panel{
   position: sticky;
-  top: clamp(6.2rem, 10vw, 8.4rem);
+  top: clamp(4.6rem, 7vw, 5.8rem);
   z-index: 20;
 }
+
+#simulador .walk-button:not(.is-selected),
+#simulador .legend-item:not(.is-selected),
+#simulador .legend-clear:not(.is-selected){
+  border-color: rgba(20, 57, 95, 0.18);
+  background: rgba(243, 231, 210, 0.28);
+  box-shadow: 0 0 0 0.04rem rgba(243, 231, 210, 0.42) inset;
+}
+
+#simulador .walk-button:not(.is-selected):hover,
+#simulador .legend-clear:not(.is-selected):hover{
+  border-color: rgba(213, 106, 31, 0.42);
+  background: rgba(243, 231, 210, 0.52);
+}
+
+#simulador .legend-item[data-agent="infraestructura"]:not(.is-selected):hover{ border-color: var(--infraestructura); }
+#simulador .legend-item[data-agent="vehiculos"]:not(.is-selected):hover{ border-color: var(--vehiculos); }
+#simulador .legend-item[data-agent="humano"]:not(.is-selected):hover{ border-color: var(--humano); }
+#simulador .legend-item[data-agent="noHumano"]:not(.is-selected):hover{ border-color: var(--noHumano); }
+#simulador .legend-item[data-agent="decision"]:not(.is-selected):hover{ border-color: var(--decision); }
 
 #simulador .diagram-column{
   min-width: 0;

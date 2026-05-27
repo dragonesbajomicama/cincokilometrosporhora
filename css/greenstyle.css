@@ -12,7 +12,7 @@
   --col-borde: rgba(22, 59, 99, 0.18);
 
   --ff-base: "mozaic-geo-variable", sans-serif;
-  --ff-display: "gridlite-pe-variable", sans-serif;
+  --ff-display: "5KM", sans-serif;
 
   --maxw: 84rem;
   --sp-1: 0.6rem;
@@ -25,6 +25,22 @@
   --radius-pill: 0.15rem;
   --bdr: 0.1rem solid var(--col-borde);
   --bdr-strong: 0.14rem solid rgba(22, 59, 99, 0.42);
+}
+
+@font-face{
+  font-family: "5KM";
+  src: url("../fonts/5KMVF.ttf") format("truetype");
+  font-weight: 400 699;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "5KM";
+  src: url("../fonts/5KMboldVF.ttf") format("truetype");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 *{
