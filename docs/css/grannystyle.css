@@ -1756,3 +1756,15 @@ li{
   border-color: inherit;
   box-shadow: none;
 }
+
+@media (max-width: 56rem){
+  #simulador .side-panel{
+    position: relative;
+    top: auto;
+    z-index: 1;
+  }
+
+  #simulador .analysis-layout{
+    gap: 0.72rem;
+  }
+}

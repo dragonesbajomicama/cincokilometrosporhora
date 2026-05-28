@@ -1093,8 +1093,29 @@ strong{ font-variation-settings: "wght" 760; }
 }
 @media (max-width: 56rem){
   .side-panel{
-    position: sticky;
-    top: calc(6.5rem + var(--sp-1));
+    position: relative;
+    top: auto;
+    z-index: 1;
+    overflow-x: clip;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.42rem;
+    padding: 0.52rem 0.58rem;
+  }
+  .side-section{
+    gap: 0.42rem;
+  }
+  .routes-panel{
+    padding-right: 0;
+    padding-bottom: 0.42rem;
+    border-right: 0;
+    border-bottom: 0.1rem solid rgba(20, 57, 95, 0.12);
+  }
+  .side-panel .section-tag{
+    min-width: 0;
+    width: 3.7rem;
+    padding-top: 0.2rem;
+    font-size: 0.66rem;
   }
   .synthesis-card{ grid-template-columns: 1fr; }
   .card-head{ flex-direction: column; align-items: stretch; }
@@ -1106,17 +1127,98 @@ strong{ font-variation-settings: "wght" 760; }
   .reading-column{ grid-template-columns: 1fr; }
   .action-legend{
     position: static;
-    align-items: flex-start;
     width: auto;
     max-width: none;
-    margin: 0 0 0.65rem;
+    margin: 0 0 0.4rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 0.28rem 0.52rem;
+    align-items: center;
+    font-size: 0.72rem;
+  }
+  .spiral-card{
+    margin-top: 0 !important;
+    min-height: auto;
+  }
+  .action-legend span,
+  .action-legend .section-tag{
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    flex: 0 0 auto;
+    gap: 0.26rem;
+  }
+  .action-legend .section-tag{
+    margin: 0;
+    padding-right: 0.2rem;
+  }
+  .glyph{
+    width: 0.72rem;
+    height: 0.72rem;
+  }
+  .glyph-x::before,
+  .glyph-x::after{
+    top: 0.31rem;
+    width: 0.66rem;
+    height: 0.11rem;
+  }
+  .glyph-dot,
+  .glyph-square{
+    width: 0.58rem;
+    height: 0.58rem;
+  }
+  .glyph-triangle{
+    border-left-width: 0.34rem;
+    border-right-width: 0.34rem;
+    border-bottom-width: 0.65rem;
+  }
+  .word-block{
+    position: static;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin: 0.25rem 0 0;
+    min-width: 0;
+  }
+  .word-block .card-head{
+    transform: none;
+    justify-content: start;
+    text-align: left;
+    margin-bottom: 0.12rem;
+  }
+  .word-caption{
+    font-size: 0.68rem;
+  }
+  .pixel-word{
+    min-width: 0;
+    width: 100%;
+  }
+  .walk-buttons,
+  .side-panel .legend{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.28rem;
+    align-items: stretch;
+  }
+  .walk-button,
+  .legend-item,
+  .legend-clear{
+    flex: 1 1 5.8rem;
+    max-width: none;
+    min-width: 0;
+    min-height: 1.48rem;
+    padding: 0.22rem 0.36rem;
+    font-size: 0.72rem;
+    line-height: 1.1;
+    text-align: center;
   }
   .reading-card{
     position: static;
     width: 100%;
   }
   .action-legend .section-tag{ text-align: left; }
-  .pixel-word{ min-width: 28rem; }
+  .pixel-word{ min-width: 0; width: 100%; }
   .stat-details-body{
     grid-template-columns: repeat(2, minmax(10rem, 1fr));
     width: min(42rem, calc(100vw - 3rem));
@@ -1127,25 +1229,29 @@ strong{ font-variation-settings: "wght" 760; }
   :root{ --content-pad: 1rem; }
   .card{ padding: 1.15rem; }
   .nav-principal a{ font-size: 0.9rem; padding: 0.52rem 0.72rem; }
-  .walk-button{ font-size: 0.76rem; padding: 0.36rem 0.58rem; }
+  .walk-button{ font-size: 0.7rem; padding: 0.22rem 0.34rem; }
   .legend-item,
-  .legend-clear{ font-size: 0.76rem; padding: 0.36rem 0.58rem; }
+  .legend-clear{ font-size: 0.7rem; padding: 0.22rem 0.34rem; }
   .side-panel .legend,
   .walk-buttons{
     display: flex;
+    flex-wrap: wrap;
   }
   .route-heading h2{
     font-size: clamp(2.2rem, 16vw, 4.4rem);
   }
   .word-block{
     position: static;
-    width: calc(100% - 1.5rem);
-    margin: 0.75rem auto;
+    width: 100%;
+    margin: 0.35rem 0 0;
+    min-width: 0;
   }
+  .spiral-card{ margin-top: 0 !important; }
   .stat-details-body{
     grid-template-columns: 1fr;
     width: min(22rem, calc(100vw - 2rem));
   }
   .comparison-grid{ grid-template-columns: 1fr; }
+  .pixel-word{ min-width: 0; width: 100%; }
 }
 @media (min-width: 100rem){ :root{ --maxw: 104rem; } }

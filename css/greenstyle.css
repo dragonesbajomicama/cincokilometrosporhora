@@ -30,7 +30,7 @@
 @font-face{
   font-family: "5KM";
   src: url("../fonts/5KMVF.ttf") format("truetype");
-  font-weight: 400 699;
+  font-weight: 100 699;
   font-style: normal;
   font-display: swap;
 }
@@ -219,13 +219,14 @@ a:hover{
   display: block;
   margin-top: 1rem;
   max-width: 24ch;
-  font-family: var(--ff-base);
-  font-size: clamp(1.35rem, 2.7vw, 2.15rem);
+  font-family: var(--ff-display);
+  font-weight: 200;
+  font-size: clamp(1.8rem, 4.2vw, 3.4rem);
   line-height: 1.05;
   letter-spacing: 0.03em;
   color: var(--col-lima);
   text-transform: none;
-  font-variation-settings: "wght" 760;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 200;
 }
 
 .hero-text-box{
